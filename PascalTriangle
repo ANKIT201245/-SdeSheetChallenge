@@ -1,0 +1,26 @@
+vector<vector<long long int>> printPascal(int numRows) 
+{
+   vector<vector<long long int> > temp;
+    if(numRows == 0)
+      return temp;
+    vector<long long int> row;
+    row.push_back(1);
+    temp.push_back(row);
+    if(numRows == 1)
+        return temp;
+    row.push_back(1);
+    temp.push_back(row);
+    if(numRows == 2)
+        return temp;
+    for(int j = 3;j <= numRows;j++){
+        vector<long long int> row;
+        row.push_back(1);
+        for(int i = 1;i < j-1;i++){
+            row.push_back(temp[j-2][i-1] + temp[j-2][i]);
+        }
+        row.push_back(1);
+        temp.push_back(row);
+    }
+    return temp;
+
+}
