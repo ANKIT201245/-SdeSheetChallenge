@@ -1,0 +1,25 @@
+vector<int> nextPermutation(vector<int> &nums, int n)
+{
+    int k, l;
+         //  from last we check is which postion first we get greater elment
+        for (k = n - 2; k >= 0; --k) {
+            if (nums[k] < nums[k + 1]) {
+                break;
+            }
+        }
+         // if all the element in sort then k will be negative 
+        if (k < 0) {
+            reverse(nums.begin(), nums.end());
+        } 
+         // if k is not negative that mean it is between the array 
+         else {
+            for (l = n - 1; l > k; l--) {
+                if (nums[l] > nums[k]) {
+                    break;
+                }
+            } 
+            swap(nums[k], nums[l]);
+            reverse(nums.begin() + k + 1, nums.end());
+             return nums;
+        }
+}
