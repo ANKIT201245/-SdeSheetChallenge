@@ -1,0 +1,26 @@
+bool cmp(pair<int,int>a,pair<int,int>b)
+{
+    double x=(double)a.second/(double)a.first;
+    double y=(double)b.second/(double)b.first;
+    return x>y;
+}
+double maximumValue (vector<pair<int, int>>& items, int n, int w)
+{
+    sort(items.begin(),items.end(),cmp);
+    int curr=0;
+    double res=0.0;
+    for(int i=0;i<items.size();i++)
+    {
+        if(curr+items[i].first<=w)
+        {
+            curr+=items[i].first;
+            res+=items[i].second;
+        }
+        else{
+            int remain=w-curr;
+            res+=(items[i].second/(double)items[i].first)*remain;
+            break;
+        }
+    }
+    return res;
+}
