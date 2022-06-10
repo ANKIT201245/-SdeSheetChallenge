@@ -1,0 +1,23 @@
+#include <bits/stdc++.h> 
+int uniqueSubstrings(string s)
+{
+     unordered_set<int>st;
+        int we=0,ws=0,res=0;
+        while(we<s.size())
+        {
+            if(st.count(s[we])==0)
+           
+               {
+                st.insert(s[we]);
+                int size=st.size();
+                res=max(res,size);
+                we++;
+                }
+            else
+                {
+                st.erase(s[ws]);
+                ws++;
+                }
+        }
+        return res;
+}
