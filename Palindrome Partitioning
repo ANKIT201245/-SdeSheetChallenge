@@ -1,0 +1,33 @@
+ bool palindrom(string s,int start,int end)
+    {
+        while(start<=end)
+        {
+            if(s[start++]!=s[end--])return false;
+        }
+        return true;
+    }
+    void solve(int indx,vector<string>temp,vector<vector<string>>&res,string s)
+    {
+        if(indx==s.size())
+        {
+            res.push_back(temp);
+            return ;
+        }
+        for(int i=indx;i<s.size();++i)
+        {
+            if(palindrom(s,indx,i))
+            {
+                temp.push_back(s.substr(indx,i-indx+1));
+                solve(i+1,temp,res,s);
+                temp.pop_back();
+            }
+        }
+        
+    }
+public:
+    vector<vector<string>> partition(string s) {
+        vector<string>temp;
+        vector<vector<string>>res;
+        solve(0,temp,res,s);
+        return res;
+    }
