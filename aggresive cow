@@ -1,0 +1,32 @@
+bool good(vector<int> pos , int n ,  int c,int mid)
+{
+    int ele=pos[0];
+    int count=1;
+    for(int i=0;i<n;i++)
+    {
+        if(pos[i]-ele>=mid)
+        {
+            count++;
+            ele=pos[i];
+        }
+        if(count==c)return true;
+    }
+    return false;
+}
+int chessTournament(vector<int> pos , int n ,  int c){
+	sort(pos.begin(),pos.end());
+    int i=1;
+    int j=pos[n-1]-pos[0];
+    int ans=0;
+    while(i<=j)
+    {
+        int mid=i+(j-i)/2;
+        if(good(pos,n,c,mid))
+        {
+            ans=mid;
+            i=mid+1;
+        }
+        else j=mid-1;
+    }
+    return ans;
+}
