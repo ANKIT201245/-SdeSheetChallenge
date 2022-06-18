@@ -1,0 +1,38 @@
+#include <bits/stdc++.h> 
+
+ 
+string fourSum(vector<int> nums, int target, int n) {
+    // Write your code here.   
+        sort(nums.begin(),nums.end());
+        if(nums.size()<4)return "NO";
+        for(int i=0;i<n-2;i++)
+        {
+           if(i>0&&nums[i]==nums[i-1])continue;
+           
+              
+                int val1=nums[i];
+              for(int j=i+1;j<n-1;j++)
+               {
+                  if(j>i+1&&nums[j]==nums[j-1])continue;
+                      int val2=nums[j];
+                    int low=j+1;
+                     int high=n-1;
+                while(low<high)
+                {
+                    
+                    if((long long )val1+val2+nums[low]+nums[high]==target)
+                    {
+                       return "Yes";
+                        
+                    }
+                      else if((long long)nums[low]+nums[high]+val1+val2<target)low++;
+                      else high--;
+                }
+                  
+                
+                    
+               }
+           
+        }
+    return "No";
+}
