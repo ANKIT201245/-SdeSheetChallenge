@@ -1,0 +1,17 @@
+TreeNode<int>*solve(vector<int>& postorder,vector<int>& in,int &index,int start,int end)
+    {
+        if(start>end)return NULL;
+        int curr=postorder[index--];
+        int pos=0;
+        while(curr!=in[pos])pos++;
+       TreeNode<int>*root=new TreeNode<int>(curr);
+        root->right=solve(postorder,in,index,pos+1,end);
+         root->left=solve(postorder,in,index,start,pos-1);
+        return root;
+        
+    }
+TreeNode<int>* getTreeFromPostorderAndInorder(vector<int>& postOrder, vector<int>& inOrder) 
+{
+	int index=postOrder.size()-1;
+        return solve(postOrder,inOrder,index,0,inOrder.size()-1);
+}
