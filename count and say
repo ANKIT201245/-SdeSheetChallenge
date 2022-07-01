@@ -1,0 +1,23 @@
+string writeAsYouSpeak(int n) 
+{
+	 if(n==1)return "1";
+        string s=writeAsYouSpeak(n-1);
+        char curr=s[0];
+        int cnt=1;
+        string res;
+        for(int i=1;i<s.size();++i)
+        {
+            if(s[i]==curr){
+                cnt++;
+            }
+            else{
+                res+=to_string(cnt)+curr;
+                curr=s[i];
+                cnt=1;
+            }
+        }
+        if(cnt>0){
+            res+=to_string(cnt)+curr;
+        }
+        return res;
+}
