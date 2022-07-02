@@ -1,0 +1,21 @@
+vector<int> getLevelOrder(BinaryTreeNode<int> *root)
+{
+    vector<int>res;
+    if(!root)return res;
+    queue<BinaryTreeNode<int> *>q;
+    q.push(root);
+    
+    while(q.size()!=0)
+    {
+        int n=q.size();
+        for(int i=1;i<=n;i++)
+        {
+            auto it=q.front();
+            q.pop();
+            res.push_back(it->val);
+            if(it->left)q.push(it->left);
+            if(it->right)q.push(it->right);
+        }
+    }
+    return res;
+}
