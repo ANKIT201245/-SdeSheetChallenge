@@ -1,0 +1,24 @@
+#include<bits/stdc++.h>
+bool searchInBST(TreeNode<int>*root, int x,vector<int>&temp) {
+    if(root==NULL)return false;
+    temp.push_back(root->data);
+    if(root->data==x)return true;
+    else if(x<root->data)return searchInBST(root->left,x,temp);
+    return searchInBST(root->right,x,temp);
+    temp.pop_back();
+    return false;
+}
+TreeNode<int>* LCAinaBST(TreeNode<int>* root, TreeNode<int>* P, TreeNode<int>* Q)
+{
+	vector<int>temp1,temp2;
+    searchInBST(root,P->data,temp1);
+    searchInBST(root,Q->data,temp2);
+    int size=min(temp1.size(),temp2.size());
+    TreeNode<int>* res=new TreeNode<int>(-1);
+    for(int i=0;i<size;i++)
+    {
+        if(temp1[i]==temp2[i])res->data=temp1[i];
+        else break;
+    }
+    return res;
+}
