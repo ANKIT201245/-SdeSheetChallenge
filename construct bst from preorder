@@ -1,0 +1,20 @@
+#include<bits/stdc++.h>
+TreeNode<int>*solve(vector<int>& pre,vector<int>& in,int &index,int start,int end)
+    {
+        if(start>end)return NULL;
+        int curr=pre[index];
+        int pos=0;
+        while(curr!=in[pos])pos++;
+        index++;
+        TreeNode<int>*root=new TreeNode<int>(curr);
+        root->left=solve(pre,in,index,start,pos-1);
+        root->right=solve(pre,in,index,pos+1,end);
+        return root;
+        
+    }
+TreeNode<int>* preOrderTree(vector<int> &preOrder){
+    vector<int>inorder(preOrder.begin(),preOrder.end());
+    sort(inorder.begin(),inorder.end());
+    int index=0;
+        return solve(preOrder,inorder,index,0,inorder.size()-1);
+}
